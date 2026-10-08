@@ -1,0 +1,6 @@
+# tested with: Python 3.10.9, torch 2.6.0 (CUDA 11.8), torchvision 0.21.0, numpy 1.23.5, pandas 1.5.3, tqdm 4.64.1
+torch
+torchvision
+numpy
+pandas
+tqdm

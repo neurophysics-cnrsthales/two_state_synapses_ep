@@ -1,0 +1,28 @@
+{
+  "device": 0,
+  "dataset": "mnist",
+  "epochs": 30,
+  "batchSize": 128,
+  "test_batchSize": 512,
+  "fcLayers": [
+    784,
+    512,
+    10
+  ],
+  "lr": [
+    30,
+    30
+  ],
+  "activation_function": "smooth_hardsigm",
+  "optimizer": "SGD",
+  "continuous_update": false,
+  "seed": 0,
+  "w_scale": 0.1,
+  "mac": "total",
+  "dt": 0.5,
+  "T": 30,
+  "Kmax": 10,
+  "beta": 0.5,
+  "lr_scheduler": "cosine",
+  "lr_min": 3.0
+}
