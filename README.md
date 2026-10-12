@@ -10,7 +10,7 @@ Experiments are performed on MNIST using an MLP with one hidden layer of 512 uni
 
 ### 1. Requirements
 
-* Python 3 (tested with 3.10; other versions are untested) and about 100 MB of disk space (MNIST is ~80 MB once extracted).
+* Python 3 (tested with 3.10; other versions are untested).
 * GPU is optional but recommended.
 * Packages (`requirements.txt`): `torch`, `torchvision`, `numpy`, `pandas`, `tqdm`.
   Tested with torch 2.6.0 (CUDA 11.8), torchvision 0.21.0, numpy 1.23.5, pandas 1.5.3, tqdm 4.64.1.
@@ -44,8 +44,7 @@ python -c "import torch, torchvision; print(torch.__version__, 'GPU available:',
 | `network.py` | `MacDynamic` implements Variant A (`mac = total`) and Variant B (`mac = partial`); `InstarD` is the dynamic weight update |
 | `train_test.py` | training / evaluation loops (phased update `train_dyn_ep`, continuous update `train_dyn_sequential_ep`) |
 | `tool.py`, `data.py` | activation function, optimiser, results table; MNIST loader (data kept on the device) |
-| `config/best/` | the four configurations used for expriments: phased / continuous x Variant A / B (784-512-10) |
-| `METHODS_AND_HYPERPARAMETERS.md` | methods, hyper-parameters, selection protocol and results (file paths in it refer to the original `model/` folder) |
+| `config/best/` | the four configurations used for expriments: phased / continuous x Variant A / B (784-512-10)  |
 
 ## Notation
 
