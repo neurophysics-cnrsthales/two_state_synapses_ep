@@ -73,12 +73,7 @@ python main.py --json_path ./config/best/continuous_B --seed 0 --device 0 --out_
 ```
 
 Each run writes `results.csv` (one row per epoch; columns `Train_Error`, `Train_Loss`, `Weight_Norm`, `Test_Error`,
-`Min_Test_Error`, as fractions) and the weights `model_state_dict*.pt`. The reported number is the test error after the last
-epoch, i.e. the last line of `results.csv`:
-
-```bash
-tail -n 1 ./results/phased_A/results.csv
-```
+`Min_Test_Error`, as fractions) and the weights `model_state_dict*.pt`. The reported number is the test error of the last epoch for each run.
 
 ## Expected results (last-epoch test error %)
 
@@ -89,20 +84,19 @@ tail -n 1 ./results/phased_A/results.csv
 | continual A (300 epochs) | 2.14 | 2.24 ± 0.11 |
 | continual B (300 epochs) | 2.24 | 2.30 ± 0.09 |
 
-A single run differs from the 10-seed mean by about one standard deviation, so do not expect exactly the mean. Runs are
-deterministic for a fixed seed on the same software and hardware. About 2 min per phased run and 20-30 min per continual run on
-one RTX 4090.
-
+The results reported in the article are the mean ± one standard deviation over 10 random seeds, while the commands provided before each run correspond only to the first seed. However, all runs are deterministic for a fixed seed under the same software and hardware environment. In our setup, each phased run takes about 2 minutes, while each continual run takes about 20–30 minutes on a single NVIDIA RTX 4090 GPU.
 ## Options
 
 Command line: `--json_path` (folder with `config.json`), `--device` (GPU index, -1 = CPU), `--seed`, `--out_dir`.
 
 Keys of a `config.json` (all of them are read; nothing else is): `device`, `dataset` (`mnist`),
-`epochs`, `batchSize`, `test_batchSize`, `fcLayers` (e.g. `[784, 512, 10]` or `[784, 512, 512, 10]`), `lr` (one value per weight
+`epochs`, `batchSize`, `test_batchSize`, `fcLayers` (e.g. `[784, 512, 10]`), `lr` (one value per weight
 layer, input side first), `activation_function` (`smooth_hardsigm`), `optimizer` (`SGD` or `Adam`), `continuous_update`
 (`false` = phased update, `true` = continuous update), `seed`, `mac` (`total` = Variant A, `partial` = Variant B), `w_scale` (g),
 `dt`, `T` (free-phase steps), `Kmax` (nudge-phase steps), `beta`.
-Optional: `lr_scheduler` (`cosine` or `null`) with `lr_min`, `grad_clip` (per-layer norm clipping), `grad_clip_value`
+
+
+Optiona Keys of json filel: `lr_scheduler` (`cosine` or `null`) with `lr_min`, `grad_clip` (per-layer norm clipping), `grad_clip_value`
 (per-layer element-wise clipping), `momentum`, `weight_decay`, `val_split` (hold out that many training images as a validation
 set, reported in the `Test_Error` column).
 
